@@ -8,7 +8,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against file",
-            "url": "file:///C:/Users/Administrator/Documents/Antonio-Portfolio/lib/portfolio.html",
+            "url": "file:///C:/Users/Administrator/Documents/Antonio-Portfolio/portfolio.html",
             "webRoot": "${workspaceFolder}"
         }
     ]

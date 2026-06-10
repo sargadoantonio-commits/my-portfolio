@@ -26,30 +26,87 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1.2rem
 .btn-contact:hover{border-color:#f97316;}
   .hero-right{flex:0 0 400px;display:flex;align-items:center;justify-content:center;}
 .avatar-ring{width:340px;height:340px;border-radius:50%;background:radial-gradient(circle at 40% 50%,#f97316 0%,#b45309 55%,#1c0a00 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 0 80px rgba(249,115,22,.3);}
+.avatar-ring{transition:transform 220ms cubic-bezier(.2,.9,.3,1);will-change:transform;}
 .avatar-inner{width:308px;height:308px;border-radius:50%;background:#0a0a0a;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .avatar-inner img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
 .avatar-placeholder{font-size:5.5rem;color:#f97316;font-weight:800;opacity:.6;user-select:none;}
 section{padding:5rem 4rem;}
-.section-title{font-size:2rem;font-weight:700;margin-bottom:.4rem;}
+.section-title{font-size:2rem;font-weight:700;margin-bottom:.4rem;text-align:center;}
 .section-title span{color:#f97316;}
-.section-sub{color:#666;font-size:.9rem;margin-bottom:2.5rem;}
+.section-sub{color:#666;font-size:.9rem;margin-bottom:2.5rem;text-align:center;}
 .divider{height:1px;background:#1a1a1a;margin:0 4rem;}
-.about-grid{display:flex;gap:3rem;align-items:flex-start;flex-wrap:wrap;}
-.about-text{flex:1;min-width:260px;color:#aaa;font-size:.92rem;line-height:1.8;}
-.about-stats{display:flex;gap:1.5rem;flex-wrap:wrap;}
-.stat{text-align:center;background:#111;border:1px solid #222;border-radius:12px;padding:1.2rem 2rem;}
-.stat h3{font-size:2rem;font-weight:700;color:#f97316;}
-.stat p{font-size:.78rem;color:#888;}
+.about-grid{display:flex;gap:2.5rem;align-items:center;flex-wrap:wrap;max-width:1100px;margin:0 auto;justify-content:center;}
+.about-photo{flex:0 0 300px;border-radius:14px;overflow:hidden;background:transparent;padding:0;border:1px solid transparent}
+.about-photo img{display:block;width:100%;height:auto;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.5);}
+.about-text{flex:1 1 540px;min-width:260px;color:#bfbfbf;font-size:1rem;line-height:1.8;}
+.about-text p{margin-bottom:1.1rem;color:#bfbfbf}
+.about-stats{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.6rem;align-items:flex-start;justify-content:center}
+.stat{display:flex;flex-direction:column;align-items:center;justify-content:center;background:#0f0f0f;border:1px solid #222;border-radius:12px;padding:1rem 1rem;width:120px;height:90px;}
+.stat h3{font-size:1.6rem;font-weight:800;color:#f97316;margin-bottom:.3rem;text-shadow:0 6px 18px rgba(249,115,22,0.20), 0 0 6px rgba(249,115,22,0.10);} 
+.stat p{font-size:.75rem;color:#888;margin:0}
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1rem;}
+
+/* Looping tech carousel (right -> left) */
+.skills-wrapper{max-width:none;margin:0 4rem;padding:0;width:auto;}
+.tech-carousel{overflow:hidden;position:relative;width:100%;}
+.tech-carousel::before,.tech-carousel::after{content:"";position:absolute;top:0;bottom:0;width:4rem;pointer-events:none;z-index:6}
+.tech-carousel::before{left:0;background:linear-gradient(90deg,#0a0a0a 0%,rgba(10,10,10,0) 70%)}
+.tech-carousel::after{right:0;background:linear-gradient(270deg,#0a0a0a 0%,rgba(10,10,10,0) 70%)}
+.tech-track{display:flex;gap:1rem;align-items:center;white-space:nowrap;will-change:transform;}
+.tech-track .skill{flex:0 0 auto;min-width:120px;width:auto}
+
+/* animation uses 50% translate so the track should contain duplicated items (done in JS) */
+.tech-track{animation:none;}
+
+@keyframes tech-scroll{
+  from{transform:translateX(0);} 
+  to{transform:translateX(-50%);} 
+}
 .skill{background:#111;border:1px solid #222;border-radius:12px;padding:1.4rem 1rem;text-align:center;transition:border-color .2s;}
 .skill:hover{border-color:#f97316;}
 .skill i{font-size:2rem;color:#f97316;margin-bottom:.5rem;display:block;}
 .skill p{font-size:.8rem;color:#ccc;}
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}
+
+/* Make certificates section match About section width and centering */
+#certificates .projects-grid{max-width:1100px;margin:0 auto;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:1.5rem}
+
+#certificates .card{min-height:220px}
 .card{background:#111;border:1px solid #222;border-radius:16px;overflow:hidden;transition:border-color .2s,transform .2s;}
 .card:hover{border-color:#f97316;transform:translateY(-4px);}
 .card-img{width:100%;height:180px;background:#1a1a1a;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .card-img img{width:100%;height:100%;object-fit:cover;}
+
+/* Make project card images taller and show full image without harsh cropping */
+.projects-grid .card-img{height:520px}
+.projects-grid .card-img img{object-fit:contain;padding:12px;background:transparent}
+
+/* Simple slideshow inside project card */
+.slideshow{position:relative;width:100%;height:100%;overflow:hidden}
+.slideshow .slide{position:absolute;inset:0;opacity:0;transition:opacity .5s ease;display:flex;align-items:center;justify-content:center}
+.slideshow .slide.active{opacity:1}
+.slideshow .slide img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Certificates: make image area slightly shorter and center/contain the certificate image */
+/* Larger certificate preview and taller cards */
+#certificates .card-img{height:220px}
+#certificates .card-img img{height:100%;width:auto;object-fit:contain;padding:12px;background:transparent;border-radius:8px}
+
+/* Give certificate card body more height/padding for stronger presence */
+#certificates .card-body{padding:2.2rem}
+
+/* Increase overall certificate card presence */
+#certificates .card{min-height:340px}
+
+/* Responsive: adjust certificate image area on small screens */
+@media(max-width:768px){
+  #certificates .card-img{height:140px}
+  #certificates .card-body{padding:1.6rem}
+  #certificates .card{min-height:unset}
+  /* Reduce project image height on small screens for better layout */
+  .projects-grid .card-img{height:260px}
+  .projects-grid .card-img img{object-fit:cover;padding:0}
+}
 .card-img-placeholder{font-size:3rem;color:#333;}
 .card-body{padding:1.4rem;}
 .card-body h3{font-size:1rem;font-weight:700;margin-bottom:.4rem;}
@@ -80,4 +137,26 @@ footer span{color:#f97316;}
   section{padding:3rem 1.5rem;}
   .divider{margin:0 1.5rem;}
   .about-grid{flex-direction:column;}
+  .about-photo{flex:none;width:100%;max-width:420px;margin:0 auto 1rem;}
+  .skills-wrapper{margin:0 1.5rem}
+}
+
+/* Contact form styles */
+.contact-grid-and-form{display:grid;grid-template-columns:1fr 420px;gap:2.2rem;align-items:start;max-width:1100px;margin:0 auto}
+.contact-form{background:#0f0f0f;border:1px solid #222;border-radius:12px;padding:1.4rem;}
+.contact-form .form-row{margin-bottom:0.9rem}
+.contact-form input,.contact-form textarea{width:100%;background:#0a0a0a;border:1px solid #222;padding:.85rem .9rem;border-radius:8px;color:#fff;font-size:.95rem}
+.contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:#f97316;box-shadow:0 0 0 4px rgba(249,115,22,0.06)}
+.contact-form textarea{resize:vertical}
+.form-actions{display:flex;align-items:center;gap:1rem}
+.btn-contact-submit{background:#f97316;color:#fff;border:none;padding:.7rem 1.2rem;border-radius:10px;cursor:pointer;font-weight:700}
+.contact-success{color:#9feabf;font-size:.92rem}
+
+/* Success message animation */
+.contact-success{display:inline-flex;align-items:center;gap:.6rem;font-weight:600;opacity:0;transform:translateY(-6px);transition:opacity .28s ease,transform .28s ease}
+.contact-success.show{opacity:1;transform:translateY(0)}
+.contact-success .icon{display:inline-flex;width:24px;height:24px;border-radius:50%;align-items:center;justify-content:center;background:#083217;color:#9feabf;font-size:0.9rem}
+
+@media(max-width:900px){
+  .contact-grid-and-form{grid-template-columns:1fr;}
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600">
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <rect x="20" y="20" width="860" height="560" rx="6" fill="#f7f7f7" stroke="#e6e6e6" />
+  <text x="60" y="110" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#333">This certificate is awarded to</text>
+  <text x="60" y="170" font-family="Arial, Helvetica, sans-serif" font-size="46" font-weight="700" fill="#0b53a0">Antonio Sargado</text>
+  <text x="60" y="220" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#333">for successfully completing</text>
+  <text x="60" y="270" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#0b53a0">CCNA: Introduction to Networks</text>
+  <text x="60" y="360" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#666">offered by Davao Del Norte State College through the Cisco Networking Academy program</text>
+  <text x="660" y="520" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#333">31 May 2025</text>
+</svg>
